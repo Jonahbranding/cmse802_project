@@ -1,0 +1,16 @@
+    
+#This tests to see what happens when initial trait value is set to zero.
+
+import unittest
+
+class TestSexLinkedHandicapModelEdgeCases(unittest.TestCase):
+
+    def test_initial_trait_at_zero(self):
+        model = SexLinkedHandicapModel(
+            pop_size=1000,
+            max_handicap=3.0
+        )
+        model.male_handicaps = np.zeros(model.pop_size)
+        model.update_generation()
+        # Traits should increase slightly due to mutation
+        self.assertGreater(np.mean(model.male_handicaps), 0.0, "Traits didn't increase from mutation")
