@@ -1,0 +1,1 @@
+This contains both John Maynard-Smith's original model (i.e. a python implementation of the simulation described in his paper--see Literature_cited), and the modificaiton of the model to handle quantitative traits under developmental constraint.
