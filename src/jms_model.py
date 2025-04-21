@@ -1,5 +1,8 @@
-#First model--simple implementaiton of JMS's model
+#This code was written with assistance from ChatGPT-4.0
 
+#Here, I provide a Python implementation of John Maynard-Smith's 1976 sex-linked handicap model.
+
+#import libraries
 import numpy as np
 
 
