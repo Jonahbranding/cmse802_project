@@ -1,3 +1,5 @@
+#This code was written with assistance from ChatGPT-4.0
+
 #Here, I test whether the mutation is responsible for an increase in handicap rates from zero, by setting the mutation rate = 0. I'm looking for the rate to remain at 0.
 
 import unittest
