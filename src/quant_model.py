@@ -1,3 +1,5 @@
+#This code was written with assistance from ChatGPT-4.0
+
 #Here we extend the original model to incorporate additional realism, involving developmental constraints and quantitative sex-linked traits.
 import numpy as np
 
