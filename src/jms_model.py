@@ -32,7 +32,7 @@ class HandicapModel:
         else:
             raise ValueError("Invalid genotype")
     
-# Defines another method for the class, mating_probabilities, which
+# Defines another method for the class, mating_probabilities, which gives the organisms's probability of mating, given survived to get into the "mating pool"
     def mating_probabilities(self, female_genotype, male_genotypes):
         """Return mating probabilities based on female preference."""
         if female_genotype in ['CC', 'Cc']:
@@ -40,7 +40,7 @@ class HandicapModel:
         else:
             return {g: 1 / len(male_genotypes) for g in male_genotypes}
     
-# Defines a method "update frequencies" which updates over 1 generation
+# Defines a method "update frequencies" which updates over 1 generation, according to the Mendelian inheritance rules.
     def update_frequencies(self):
         """Update allele frequencies over one generation."""
         # Compute genotype frequencies before selection. This part uses the Hardy-Weinberg equation, which assumes random mating
@@ -96,6 +96,7 @@ history = model.simulate(generations)
 # Extracts allele frequencies; returns an array with one line per generation, and three columns corresponding to allele frequencies
 p_A_values, p_B_values, p_C_values = history[:, 0], history[:, 1], history[:, 2]
 
+#Print line to make sure the simulation has worked.
 if __name__ == "__main__":
     model = HandicapModel(p_A=0.6, p_B=0.4, p_C=0.5, s=0.1, t=0.2, u=0.3)
     generations = 5
