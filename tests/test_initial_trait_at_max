@@ -1,0 +1,43 @@
+import unittest
+import numpy as np
+import sys
+import os
+
+# Add the path to the src directory (one level up + src)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+from quant_model import SexLinkedHandicapModel
+
+class TestSexLinkedHandicapModelEdgeCases(unittest.TestCase):
+
+    def test_initial_trait_at_max_constraint(self):
+        model = SexLinkedHandicapModel(
+            pop_size=1000,
+            max_handicap=3.0
+        )
+        
+        # Set all male handicaps to the max value
+        model.male_handicaps = np.full(model.pop_size, 3.0)
+        
+        # Update the generation
+        model.update_generation()
+
+        # Check trait values are clipped to max
+        traits_clipped_to_max = np.all(model.male_handicaps <= 3.0)
+        
+        # Ensure not all died out (i.e., there are survivors)
+        survivors_exist = np.any(model.male_handicaps > 0.0)
+
+        # Print whether the test passed or failed
+        if traits_clipped_to_max and survivors_exist:
+            print("Test passed: Traits are clipped to max and survivors exist.")
+        else:
+            print("Test failed: Traits exceeded max or all individuals died.")
+
+        # Assert that traits are clipped to max
+        self.assertTrue(traits_clipped_to_max, "Traits exceed max constraint")
+        # Assert that not all individuals died out
+        self.assertTrue(survivors_exist, "All individuals died out")
+
+if __name__ == '__main__':
+    print("Running unit tests for SexLinkedHandicapModel...")
+    unittest.main()
